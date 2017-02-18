@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4gag</title>
+    <link href="https://fonts.googleapis.com/css?family=Proza+Libre" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+        h1 {
+            font-family: 'Proza Libre', sans-serif;
+            font-family: 'Permanent Marker', sans-serif;
+            letter-spacing: 4px;
+        }
+
+        p, li {
+            font-family: 'Proza Libre', sans-serif;
+                font-size: 1.2em;
+        }
+
+        h2 {
+            font-family: 'Proza Libre', sans-serif;
+            font-weight: bold;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            font-family: 'Proza Libre', sans-serif;
+            font-size: 1.6em;
+        }
+
+        .logo {
+            font-size: 200px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .col-sm-4 {
+                text-align: center;
+                margin: 4em 0;
+            }
+        }
+
+        functionalitati {
+            margin-top: 1.5em;
+        }
+
+        #main-header {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        /* Add an orange color to all icons and set the font-size */
+        .logo-small {
+            color: #c3c3c3;
+            font-size: 50px;
+        }
+
+        /*
+         * Footer
+         */
+
+        .blog-footer {
+          padding: 40px 0;
+          color: #999;
+          text-align: center;
+          background-color: #f9f9f9;
+          border-top: 1px solid #e5e5e5;
+        }
+        .blog-footer p:last-child {
+          margin-bottom: 0;
+        }
+    </style>
+    <meta name="robots" content="noindex">
+    </head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="jumbotron text-center" id="main-header">
+              <h1>PROJECT: 4gag</h1> 
+            </div> 
+        </nav>
+        <div id="wrapper">
+            <div id="about" class="container-fluid">
+                <div class="row marketing">
+                    <div class="col-sm-12">
+                        <section>
+                            <center><h2>Specificatii <em>4gag</em> in mare</h2></center>
+                            <p>
+                            <strong>4gag</strong> o sa fie aplicatie dezvoltata in <em>Laravel</em> pe partea de 
+                            back-end, folosind modelul arhitectural MVC ce comunica cu MySQL si cu clientul pentru a realiza stocarea, manipularea
+                            si transmiterea informatilor. Pe partea de front-end se foloseste <em>React</em> + tehnologii asociate si JQuery sau
+                            fetch() pentru request-uri asincrone.
+                            </p>
+                            <h3>Definitii</h3>
+                            <p>Post = entitate in pagina care are un titlu si o poza asociata, iar la apasarea pe poza, se deschide o pagina dedicata
+                            unde se pot posta comentarii si da "thumbs up/down". De asemenea, un post poate fi share-uita pe Facebook.</p>
+                            <hr>
+                            <h3>Aplicatia web o sa aiba urmatoarele <strong>features</strong>:</h3>
+                            <ul>
+                                <li>Login, Logout, Signup</li>
+                                <li>Cand se intra pe site, orice utilizator o sa poata sa vada toate postarile, de la cele mai noi, la cele mai vechi</li>
+                                <li>Posibilitatea de a face search dupa numele post-urilor</li>
+                                <li>Posibilitatea de a gasi post-uri note dupa data adaugarii lor</li>
+                                <li>Un design web responsive(poti sa folosesti un framework de genul Bootstrap/Foundation)</li>
+                                <li>Post-urile se vor incarca in pagina asincron(cand se ajunge in jos-ul paginii, JS face un request AJAX, care o sa 
+                                primeasca si o sa afiseze noile post-uri si tot asa</li>
+                                <li>Orice utilizator logat o sa poata sa intre intr-un "backend" al site-ului si o sa poata adauga noi post-uri</li>
+                                <li>Orice utilizator logat o sa poata salva postari intr-o categorie personala de "Favourites"</li>
+                                <li>O sa existe clasa de SuperUser care are dreptul de a sterge postari considerate nepotrivite. Sesizarile unor postari malitioase
+                                pot fi facute de orice utilizator printr-un buton de "Report", iar un SuperUser poate viziona o lista cu astfel de reports si aproba
+                                stergerea sau chiar bann-area utilizatorului asociat.</li>
+                                <li>Postarile vor fi organizate pe categorii</li>
+                            </ul>
+                            <hr>
+                            <h3>API</h3>
+                            <p>
+                            Aplicatia pune la dispozitia utilizatorilor inregistrati posibilitatea de a folosi un API ce are urmatoarele propietati:
+                            </p>
+                            <ul>
+                                <li>Sa se poata obtine toate postarile create de utilizator</li>
+                                <li>Sa se poata obtine toate comentarile postate de utilizatorul respectiv</li>
+                                <li>Sa se poata obtine toate postarile salvate la "Favourites"</li>
+                                <li>Sa se poata sterge o lista de titluri de postari ale utilizatorului.</li>
+                            </ul>
+                            <p>
+                                Nota: sa se returneze un JSON cu un mesaj de eroare daca nu se poate ceva(specificandu-se motivul)
+                            </p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        <footer class="blog-footer">
+            <p>Pagina contruita de Horea Chivu pentru proiectul 4gag realizat de Robert Iancu. Toate drepturile rezervate. Copyright 2017 &#169;</p>
+            <p>
+                <a href="#">Inapoi sus</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
