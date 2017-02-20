@@ -1,0 +1,44 @@
+Toate routes-urile o sa contina un navbar fixat pe care se vor afla:
+    -categoriile;
+    -hot and fresh;
+    -login/register sau nume (daca userul e logat);
+    -search box;
+    -logo;
+
+//User
+'/dashboard' = pagina cu toate informatiile despre cont , nu e logat => redirect
+'/user/{id}' = informatii despre userul respectiv
+
+//Post
+'/' = home  (coloana stanga HOT, coloana dreapta FRESH) - 4 posturi de fiecare
+'/fresh' = cele mai noi postari
+'/hot' = cele mai apreciate postari din ultimile 7 zile
+'/post/{id}' = pagina in care sunt afisate commentariile
+'/newpost' = creare unui nou post daca esti logat
+'/post/{id}/delete' = stergerea unui post daca esti admin sau ownerul postului
+'/post/{id}/report' = raporteaza post
+
+//Comment
+'/post/{id}/comment' = add comment daca esti logat altfel redirectie
+'/comment/{id}/delete' = un admin poate sa stearga commentul
+'/comment/{id}/edit' = un admin poate sa editeze commentul
+
+//Like
+'/comment/{id}/like' = like comment
+'/post/{id}/like' = like post
+
+//Category
+'/categories' = lista cu categorii
+'/category/{nume_categorie}' = posturi dintr-o anumita categorie
+
+//Favourite
+'/favourites' = postarile favorite pt userul logat / redirectie catre login/register pt user nelogat
+'/favourites/{id}/delete' = request pt stergerea postului de la favorite
+
+//Admin
+'/reports' = pagina speciala pt admini ca sa vada sesizarile postari malitioase
+'/setrank/{id_user}/user/{nr_rank}' = special pt adminii de rank 3, singurii care pot face inrola alti admini;
+'/ban/user/{id}' = banarea unui anumit user de catre admini de rank 3
+
+
+
