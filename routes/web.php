@@ -26,7 +26,8 @@ Route::get('/user/{id}','UserController@user');
 // Admin routes
 
 Route::get('/reports','AdminController@reports');
-Route::post('/makeadmin/{id}','AdminController@makeadmin');
+Route::get('/admins','AdminController@admins');
+Route::post('/admins','AdminController@makeadmin');
 Route::put('/setrank/{rank}/user/{id}','AdminController@setrank');
 Route::delete('/ban/user/{id}/','AdminController@ban');
 

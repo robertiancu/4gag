@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    protected $toTruncate = ['users','posts','likes','favourites','comments','categories','admins'];
+    protected $toTruncate = ['users','posts','likes','favourites','comments','categories','admins','reports'];
     /**
      * Run the database seeds.
      *
@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentsTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
+        $this->call(ReportsTableSeeder::class);
     }
 }
