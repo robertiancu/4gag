@@ -26,6 +26,11 @@ class Post extends Model
         return $this->hasMany('App\Like');
     }
 
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');

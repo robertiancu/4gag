@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
+ */
 
 Auth::routes();
 
@@ -28,8 +29,8 @@ Route::get('/user/{id}','UserController@user');
 Route::get('/reports','AdminController@reports');
 Route::get('/admins','AdminController@admins');
 Route::post('/admins','AdminController@makeadmin');
-Route::put('/setrank/{rank}/user/{id}','AdminController@setrank');
-Route::delete('/ban/user/{id}/','AdminController@ban');
+Route::put('/user/{id}/setrank','AdminController@setrank');
+Route::delete('/user/{id}/takeadmin','AdminController@takeadmin');
 
 // Post routes
 
