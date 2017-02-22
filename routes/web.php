@@ -34,7 +34,6 @@ Route::delete('/user/{id}/takeadmin','AdminController@takeadmin');
 
 // Post routes
 
-Route::get('/', 'PostController@home');
 Route::get('/hot', 'PostController@hot');
 Route::get('/fresh', 'PostController@fresh');
 Route::get('/post/{id}', 'PostController@show');

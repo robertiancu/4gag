@@ -6,43 +6,66 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function home()
-    {
-        return 'toate posturile';
-    }
-
     public function hot()
     {
-        return 'best posts';
+        $posts = \App\Post::orderBy('likes','desc')->get();
+        return view('PostView.hot',compact('posts'));
     }
 
     public function fresh()
     {
-        return 'new posts';
+        $posts = \App\Post::orderBy('created_at','desc')->get();
+
+        return view('PostView.fresh',compact('posts'));
     }
 
-    public function show()
+    public function show($id)
     {
-        return 'anumit post';
+        $post = \App\Post::find($id);
+        return view('PostView.show',compact('post'));
     }
 
     public function newpost()
     {
-        return 'post nou';
+        $categories = \App\Category::all();
+        return view('PostView.newpost',compact('categories'));
     }
 
-    public function submit()
+    public function submit(Request $request)
     {
-        return 'submit post';
+        $post = new \App\Post;
+
+        $post->user_id = \Auth::id();
+        $post->category_id = $request->category;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->likes = 0;
+        $post->pic_url = $request->url;
+
+        $post->save();
+
+        return redirect("/post/$post->id");
     }
 
-    public function delete()
+    public function delete(Request $request)
     {
-        return 'delete post';
+        $post = \App\Post::find($request->id);
+
+        $post->delete();
+
+        return redirect('/');
     }
 
-    public function report()
+    public function report(Request $request)
     {
-        return 'report post';
+        $report = new \App\Report;
+
+        $report->post_id = $request->post_id;
+        $report->reason = $request->reason;
+        $report->user_id = \Auth::id();
+
+        $report->save();
+
+        return redirect("/post/$request->post_id");
     }
 }
