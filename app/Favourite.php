@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favourite extends Model
 {
-    public function posts()
+    public function post()
     {
-        return $this->hasMany('App\Post');
+        return $this->belongsTo('App\Post');
     }
 
     public function user()

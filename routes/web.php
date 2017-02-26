@@ -46,22 +46,20 @@ Route::post('/post/{id}/report', 'PostController@report');
 
 Route::post('/post/{id}/comment','CommentController@comment');
 Route::delete('/comment/{id}/delete','CommentController@delete');
-Route::put('/comment/{id}/edit','CommentController@edit');
 
 //Like routes
-//
-Route::post('/comment/{id}/like','LikeController@comment');
-Route::post('/post/{id}/like','LikeController@post');
+
+Route::post('/comment/{id}/like','LikeController@likecomment');
+Route::post('/post/{id}/like','LikeController@likepost');
 
 // Categories routes
 
-Route::get('/categories', 'CategoryController@index');
 Route::get('/category/{category_name}', 'CategoryController@show');
 
 
 // Favourites routes
 
-Route::post('/addtofavorites','FavouriteController@add');
+Route::post('/addtofavourites','FavouriteController@add');
 Route::get('/favourites','FavouriteController@index');
 Route::delete('/favourites/{id}/delete','FavouriteController@delete');
 
