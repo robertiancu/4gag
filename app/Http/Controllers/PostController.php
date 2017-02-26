@@ -22,7 +22,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = \App\Post::find($id);
-        return view('PostView.show',compact('post'));
+        $comments = \App\Post::with('comments.user')->find($id);
+        $comments = $comments->comments;
+        return view('PostView.show',compact('post','comments'));
     }
 
     public function newpost()
