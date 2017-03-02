@@ -8,7 +8,7 @@ class AdminController extends Controller
 {
     public function reports()
     {
-        $reports = \App\Report::all();
+        $reports = \App\Report::with(['user','post'])->get();
         return view('AdminView.reports',compact('reports'));
     }
 

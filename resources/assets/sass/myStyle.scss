@@ -1,0 +1,15 @@
+body { padding-top: 30px; }
+
+.hide-overflow 
+{
+    white-space: nowrap; 
+    width: 20em;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.inline-form
+{
+    display: inline-block;
+}
+

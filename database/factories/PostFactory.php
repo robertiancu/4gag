@@ -7,6 +7,6 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'title' => $faker->sentence(1),
         'content' => $faker->paragraph(3),
         'likes' => $faker->randomNumber(NULL),
-        'pic_url' => 'http://i.imgur.com/XvDsVvy.jpg',
+        'pic_url' => $faker->imageUrl($width = 640, $height = 480),
     ];
 });
