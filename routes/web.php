@@ -18,6 +18,10 @@
 
 Auth::routes();
 
+//Home
+
+Route::get('/', 'PostController@hot');
+
 // User routes
 
 Route::get('/dashboard', 'UserController@home');

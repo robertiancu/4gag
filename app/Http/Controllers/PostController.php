@@ -3,39 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\Report;
+use App\Category;
 
 class PostController extends Controller
 {
     public function hot()
     {
-        $posts = \App\Post::orderBy('likes','desc')->get();
+        $posts = Post::orderBy('likes','desc')->get();
         return view('PostView.hot',compact('posts'));
     }
 
     public function fresh()
     {
-        $posts = \App\Post::orderBy('created_at','desc')->get();
+        $posts = Post::orderBy('created_at','desc')->get();
 
         return view('PostView.fresh',compact('posts'));
     }
 
     public function show($id)
     {
-        $post = \App\Post::find($id);
-        $comments = \App\Post::with('comments.user')->find($id);
+        $post = Post::find($id);
+        $comments = Post::with('comments.user')->find($id);
         $comments = $comments->comments;
         return view('PostView.show',compact('post','comments'));
     }
 
     public function newpost()
     {
-        $categories = \App\Category::all();
+        $categories = Category::all();
         return view('PostView.newpost',compact('categories'));
     }
 
     public function submit(Request $request)
     {
-        $post = new \App\Post;
+        $post = new Post;
 
         $post->user_id = \Auth::id();
         $post->category_id = $request->category;
@@ -51,7 +54,7 @@ class PostController extends Controller
 
     public function delete(Request $request)
     {
-        $post = \App\Post::find($request->id);
+        $post = Post::find($request->id);
 
         $post->delete();
 
@@ -60,7 +63,7 @@ class PostController extends Controller
 
     public function report(Request $request)
     {
-        $report = new \App\Report;
+        $report = new Report;
 
         $report->post_id = $request->post_id;
         $report->reason = $request->reason;

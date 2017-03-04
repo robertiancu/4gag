@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
+use App\Post;
+use App\Like;
 
 class LikeController extends Controller
 {
     public function likecomment(Request $request, $id)
     {
-        $comment = \App\Comment::find($id);
+        $comment = Comment::find($id);
         $comment->likes+=1;
 
         $comment->update();
 
-        $like = new \App\Like;
+        $like = new Like;
         $like->user_id = \Auth::id();
         $like->likeable_id = $id;
         $like->likeable = 'comment';
@@ -25,12 +28,12 @@ class LikeController extends Controller
 
     public function likepost($id)
     {
-        $post = \App\Post::find($id);
+        $post = Post::find($id);
         $post->likes+=1;
 
         $post->update();
 
-        $like = new \App\Like;
+        $like = new Like;
         $like->user_id = \Auth::id();
         $like->likeable_id = $id;
         $like->likeable = 'post';
