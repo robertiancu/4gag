@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use App\Exceptions\RankOverflowException;
+use App\Exceptions\DoubleLikeException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -44,7 +46,17 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        switch($exception)
+        {
+            case ($exception instanceof RankOverflowException):
+                return response()->view('ErrorView.error', [], 400);
+                break;
+            case ($exception instanceof DoubleLikeException):
+                return response()->view('ErrorView.error', [], 400);
+                break;
+            default:
+                return parent::render($request, $exception);
+        }
     }
 
     /**

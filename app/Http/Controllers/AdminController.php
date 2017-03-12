@@ -7,6 +7,9 @@ use App\Report;
 use App\Admin;
 use App\User;
 
+define('RANKUP',1);
+define('RANKDOWN',-1);
+
 class AdminController extends Controller
 {
     public function reports()
@@ -37,10 +40,11 @@ class AdminController extends Controller
     public function setrank(Request $request, $id)
     {
         $user = User::with('admin')->get()->find($id);
-        if($request->setrank == -1)
-            $user->admin->rank-=1;
-        else if($request->setrank == 1)
-            $user->admin->rank+=1;
+
+        if($request->setrank == RANKDOWN)
+            $user->admin->rankDown();
+        else if($request->setrank == RANKUP)
+            $user->admin->rankUp();
 
         $user->admin->save();
 

@@ -12,16 +12,9 @@ class LikeController extends Controller
     public function likecomment(Request $request, $id)
     {
         $comment = Comment::find($id);
-        $comment->likes+=1;
+        $comment->likeUp(\Auth::id(),$id);
 
         $comment->update();
-
-        $like = new Like;
-        $like->user_id = \Auth::id();
-        $like->likeable_id = $id;
-        $like->likeable = 'comment';
-
-        $like->save();
 
         return redirect("/post/$request->post_id");
     }

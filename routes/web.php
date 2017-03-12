@@ -21,6 +21,7 @@ Auth::routes();
 //Home
 
 Route::get('/', 'PostController@hot');
+Route::get('/home', 'PostController@hot');
 
 // User routes
 

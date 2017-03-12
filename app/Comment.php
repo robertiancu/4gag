@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Like;
 
 class Comment extends Model
 {
@@ -16,8 +17,18 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function likes()
+    public function likeUp($user,$comment)
     {
-        return $this->hasMany('App\Like');
+        $liked = new Like;
+        $liked->checkCommentForDoubleLike($user,$comment);
+
+        $this->likes += 1;
+
+
+        $like = new Like;
+        $like->user_id = $user;
+        $like->likeable_id = $comment;
+        $like->likeable = 'comment';
+        $like->save();
     }
 }

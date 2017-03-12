@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\DoubleLikeException;
 
 class Like extends Model
 {
@@ -11,13 +12,15 @@ class Like extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function post()
+    public function checkCommentForDoubleLike($user,$comment)
     {
-        return $this->belongsToMany('App\Post')->wherePivot('likeable', 'post');
-    }
+        $liked = Like::where([
+            ['user_id','=',$user],
+            ['likeable_id','=',$comment],
+            ['likeable','=','comment'],
+        ])->get();
 
-    public function comment()
-    {
-        return $this->belongsToMany('App\Comment')->wherePivot('likeable','comment');
+        if($liked->count() > 0)
+            throw new DoubleLikeException;
     }
 }

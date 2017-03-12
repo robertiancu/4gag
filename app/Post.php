@@ -21,11 +21,6 @@ class Post extends Model
         return $this->hasMany('App\Favourite');
     }
 
-    public function likes()
-    {
-        return $this->hasMany('App\Like');
-    }
-
     public function reports()
     {
         return $this->hasMany('App\Report');
