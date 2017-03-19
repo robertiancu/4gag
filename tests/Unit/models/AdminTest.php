@@ -41,8 +41,6 @@ class AdminTest extends TestCase
         $admin = factory(Admin::class)->create(['rank'=> 2]);
         $admin->rankDown();
 
-        echo $admin->rank;
-
         $this->assertEquals($admin->rank,1);
     }
 

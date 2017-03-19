@@ -25,13 +25,13 @@ Route::get('/home', 'PostController@hot');
 
 // User routes
 
-Route::get('/dashboard', 'UserController@home');
+Route::get('/dashboard', 'UserController@home')->middleware('guest.redirect');
 Route::get('/user/{id}','UserController@user');
 
 
 // Admin routes
 
-Route::get('/reports','AdminController@reports');
+Route::get('/reports','AdminController@reports')->middleware('admin');
 Route::get('/admins','AdminController@admins');
 Route::post('/admins','AdminController@makeadmin');
 Route::put('/user/{id}/setrank','AdminController@setrank');
@@ -65,6 +65,6 @@ Route::get('/category/{category_name}', 'CategoryController@show');
 // Favourites routes
 
 Route::post('/addtofavourites','FavouriteController@add');
-Route::get('/favourites','FavouriteController@index');
+Route::get('/favourites','FavouriteController@index')->middleware('guest.redirect');
 Route::delete('/favourites/{id}/delete','FavouriteController@delete');
 

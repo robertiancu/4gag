@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Favourite;
+use App\Exceptions\GuestWithoutPermissionException;
 
 class FavouriteController extends Controller
 {
     public function add(Request $request)
     {
         $fav = new Favourite;
+
+        if(\Auth::id() == NULL)
+            throw new GuestWithoutPermissionException;
 
         $fav->user_id = \Auth::id();
         $fav->post_id = $request->post_id;
@@ -28,6 +32,10 @@ class FavouriteController extends Controller
     public function delete($id)
     {
         $fav = Favourite::find($id);
+
+        if($fav->user_id != \Auth::id())
+            abort(500);
+
         $fav->delete();
         return redirect("/favourites");
     }

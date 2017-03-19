@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use App\Exceptions\RankOverflowException;
 use App\Exceptions\DoubleLikeException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -49,10 +50,16 @@ class Handler extends ExceptionHandler
         switch($exception)
         {
             case ($exception instanceof RankOverflowException):
-                return response()->view('ErrorView.error', [], 400);
+                return response()->view('ErrorView.error', [], 405);
                 break;
             case ($exception instanceof DoubleLikeException):
-                return response()->view('ErrorView.error', [], 400);
+                return response()->view('ErrorView.error', [], 405);
+                break;
+            case ($exception instanceof ModelNotFoundException):
+                return response()->view('ErrorView.error', [], 404);
+                break;
+            case ($exception instanceof GuestWithoutPermissionException):
+                return response()->view('ErrorView.error', [], 500);
                 break;
             default:
                 return parent::render($request, $exception);

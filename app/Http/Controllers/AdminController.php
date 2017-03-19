@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exceptions\ModelNotFoundException;
 use App\Report;
 use App\Admin;
 use App\User;
@@ -41,6 +42,10 @@ class AdminController extends Controller
     {
         $user = User::with('admin')->get()->find($id);
 
+        $checkAdmin = Admin::where('user_id','=',$user->id)->get();
+        if($checkAdmin->isEmpty())
+            throw new ModelNotFoundException;
+
         if($request->setrank == RANKDOWN)
             $user->admin->rankDown();
         else if($request->setrank == RANKUP)
@@ -54,6 +59,12 @@ class AdminController extends Controller
     public function takeadmin(Request $request)
     {
         $user = User::with('admin')->get()->find($request->id);
+
+        $checkAdmin = Admin::where('user_id','=',$user->id)->get();
+        if($checkAdmin->isEmpty())
+            throw new ModelNotFoundException;
+
+        $admin = Admin::where('user_id','=',$user->id)->get();
 
         $admin = Admin::find($user->admin->id);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exceptions\GuestWithoutPermissionException;
 use App\Comment;
 use App\Post;
 use App\Like;
@@ -12,6 +13,10 @@ class LikeController extends Controller
     public function likecomment(Request $request, $id)
     {
         $comment = Comment::find($id);
+
+        if(\Auth::id()==NULL)
+            throw new GuestWithoutPermissionException;
+
         $comment->likeUp(\Auth::id(),$id);
 
         $comment->update();

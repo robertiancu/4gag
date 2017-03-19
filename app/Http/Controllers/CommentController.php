@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comment;
+use App\Admin;
 
 class CommentController extends Controller
 {
@@ -23,6 +24,12 @@ class CommentController extends Controller
     public function delete(Request $request, $id)
     {
         $comment = Comment::find($id);
+
+        $admin = Admin::where('user_id','=',\Auth::id())->get();
+
+        if($admin->isEmpty())
+            abort(500);
+
         $comment->delete();
 
         return redirect("/post/$request->post_id");
